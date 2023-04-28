@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <p>{{ message }}</p>
+    <p>{{ movie }}</p>
+    <p>{{ message }}</p>
+    <p>{{ movie }}</p>
+  </div>
+
+  <!-- Vue CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello vue',
+        movie: '아바타',
+      },
+      methods: {
+        print: function() {
+          console.log('print입니다')
+        },
+        bye() {
+          this.message = 'bye~ Vue'
+        },
+        arrowBye: () => {
+          this.message = 'Arrow Function!'
+          console.log(this)
+        } // arrow 를 쓰면 원하는 결과를 얻지 못할 수도 있다.
+      }
+    })
+  </script>
+</body>
+</html>

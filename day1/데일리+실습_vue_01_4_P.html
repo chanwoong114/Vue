@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="lunch">
+    <h1>점심 메뉴</h1>
+    <button @click="choice">Pick One</button>
+    <p>{{ lunchData }}</p>
+  </div>
+  <hr>
+  <div id="lotto">
+    <h1>로또</h1>
+    <button @click="lotto">Get Lucky Numbers</button>
+    <p>{{ lottoData }}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const lunch = new Vue({
+      el: '#lunch',
+      data: {
+        lunchData: '',
+        lunchArr: ['국밥', '매콤불고기', '중국식 육개장'] 
+      },
+      methods: {
+        choice: function() {
+          this.lunchData = this.lunchArr[_.random(0, 2)]
+        }
+      }
+    })
+
+    const lotto = new Vue({
+      el: '#lotto',
+      data: {
+        lottoData: '',
+      },
+      methods: {
+        lotto: function() {
+          this.lottoData = _.sampleSize(_.range(1, 46), 6)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
