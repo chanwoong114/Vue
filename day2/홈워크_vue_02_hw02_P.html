@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="-1" />
+  <meta charset="utf8">
+  <title>Hello, world</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h1>테스트</h1>
+  <input v-model="message">
+  <button v-on:click="checkPalen">확인하기</button>
+</div>
+
+<script type="text/javascript">
+   var app = new Vue({
+        el : '#app',
+        data: {
+          message: ''
+        },
+        methods: {
+          checkPalen: function() {
+            if (this.message === '') return alert('입력값이 없습니다.')
+            console.log(this.message.split('').reverse().join(''))
+            if (this.message === this.message.split('').reverse().join('')){
+              return alert('회문입니다')
+            } else {
+              return alert('회문이 아닙니다.')
+            }
+          }
+        }
+   });
+</script>
+
+</body>
