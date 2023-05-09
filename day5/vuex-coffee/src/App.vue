@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="container">
-    <div class="container row">
-      <MenuList class="col-6"/>
-      <SizeList class="col-6"/>
+    <div class="row">
+      <MenuList class="col"/>
+      <SizeList class="col"/>
+      <OptionList class="col"/>
     </div>
     <div class="rounded btn btn-success w-100" @click="addCart">장바구니 담기</div>
     <OrderList/>
@@ -13,13 +14,15 @@
 import MenuList from './components/MenuList.vue';
 import OrderList from './components/OrderList.vue';
 import SizeList from './components/SizeList.vue';
+import OptionList from './components/OptionList.vue';
 
 export default {
   name: 'App',
   components: {
     MenuList,
     OrderList,
-    SizeList
+    SizeList,
+    OptionList
   },
   methods: {
     addCart() {

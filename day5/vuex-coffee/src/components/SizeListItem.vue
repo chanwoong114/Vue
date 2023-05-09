@@ -1,10 +1,10 @@
 <template>
-  <div @click="updateSize(size)" class="row" style="height:70px;"
+  <div @click="updateSize(size)" class="row"
   :class="{'bg-success': size.selected}">
-    <div class="col-8 d-flex justify-content-center align-items-center">
-      <p>{{ size.name }}</p>
+    <div class="col-6 d-flex justify-content-center align-items-center">
+      {{ size.name }}
     </div>
-    <div class="col-2 d-flex justify-content-center align-items-center">
+    <div class="col-6 d-flex justify-content-center align-items-center">
       {{ size.price }}원
     </div>
   </div>

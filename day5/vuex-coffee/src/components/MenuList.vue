@@ -1,8 +1,8 @@
 <template>
   <div class="menu-list">
-    <h1>1. 음료를 고르세요.</h1>
-    <div class="container">
-      <MenuListItem class="container border border-black my-2 rounded" v-for="(menu, index) in menuList" 
+    <h2>1. 음료를 고르세요.</h2>
+    <div class="container d-flex flex-column align-items-stretch">
+      <MenuListItem class="container  border border-black my-2 rounded" v-for="(menu, index) in menuList" 
       :key="index"
       :menu="menu"/>
     </div>

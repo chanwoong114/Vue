@@ -1,12 +1,12 @@
 <template>
   <div @click="selectMenu(menu)" class="row" :class="{'bg-success': menu.selected}">
-    <div class="col-2">
-      <img :src="menu.image" style="width:70px; height:70px;" alt="">
-    </div>
-    <div class="col-8 d-flex justify-content-center align-items-center">
-      <p>{{ menu.title }}</p>
-    </div>
     <div class="col-2 d-flex justify-content-center align-items-center">
+      <img :src="menu.image" style="width:30px; height:30px;" alt="">
+    </div>
+    <div class="col-7 d-flex justify-content-center align-items-center">
+      {{ menu.title }}
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
       {{ menu.price }}원
     </div>
   </div>

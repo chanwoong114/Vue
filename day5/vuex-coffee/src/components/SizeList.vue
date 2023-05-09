@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>2. 사이즈를 고르세요.</h1>
-    <div class="container">
+  <div class="container">
+    <h2 class="">2. 사이즈를 고르세요.</h2>
+    <div class="container d-flex flex-column justify-content-around align-items-stretch">
       <SizeListItem class="container border border-black my-2 rounded" v-for="(size, index) in sizeList" :key="index"
       :size="size" />
     </div>

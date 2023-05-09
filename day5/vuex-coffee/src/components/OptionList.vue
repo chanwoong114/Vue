@@ -1,20 +1,25 @@
 <template>
   <div>
-    <h1>3. 옵션을 고르세요.</h1>
-    <ul class="option-list">
-    </ul>
+    <h2>3. 옵션을 고르세요.</h2>
+    <div class="container d-flex flex-column justify-content-center align-items-stretch">
+      <OptionListItem class="container border border-black my-2 rounded" v-for="(shot, index) in optionList" :key="index"
+      :shot="shot" />
+    </div>
   </div>
 </template>
 
 <script>
+import OptionListItem from './OptionListItem.vue';
 
 export default {
   name: 'OptionList',
   components: {
+    OptionListItem
   },
   computed: {
-    // optionList: function () {
-    // },
+    optionList: function () {
+      return this.$store.state.shotList
+    },
   },
   methods: {
     increase: function () {

@@ -43,6 +43,20 @@ export default new Vuex.Store({
         selected: false,
       }
     ],
+    shotList: [
+      {
+        name: '샷',
+        count: 0 
+      },
+      {
+        name: '바닐라 시럽',
+        count: 0
+      },
+      {
+        name: '카라멜 시럽',
+        count: 0
+      }
+    ]
   },
   getters: {
     totalOrderCount(state) {
@@ -50,7 +64,7 @@ export default new Vuex.Store({
     },
     totalOrderPrice(state) {
       return state.orderList.reduce((total, order) => {
-        return total + order.menu.price + order.size.price
+        return total + order.menu.price + order.size.price + order.shotCount * 500
       }, 0)
     }
   },
@@ -64,8 +78,15 @@ export default new Vuex.Store({
         return size.selected
       })
 
-      const order = {menu: menu, size: size}
-
+      const order = {menu: menu, size: size, 
+        shot: {...state.shotList[0]},
+        banila: {...state.shotList[1]},
+        caramel: {...state.shotList[2]},
+        shotCount: state.shotList[0].count + state.shotList[1].count + state.shotList[2].count
+      }
+      state.shotList.forEach(shot => {
+        return shot.count = 0
+      })
       state.orderList.push(order)
     },
     updateMenuList: function (state, selectedMenu) {
@@ -89,6 +110,26 @@ export default new Vuex.Store({
         return size
       })
     },
+    SHOT_CHANGE: function(state, shotstate) {
+      if (shotstate[1]) {
+        state.shotList.map(shot => {
+          if (shot.name === shotstate[0]) {
+            shot.count += 1
+          }
+          return shot
+        })
+      } else {
+        state.shotList.map(shot => {
+          if (shot.name === shotstate[0]) {
+            if (shot.count === 0) {
+              return
+            }
+            shot.count -= 1
+          }
+          return shot
+        })
+      }
+    }
   },
   actions: {
     updateMenuListAction: function(context, selectedMenu) {
@@ -99,7 +140,10 @@ export default new Vuex.Store({
     },
     addCart: function(context) {
       context.commit('addOrder')
-    }
+    },
+    ShotChange(context, shotstate) {
+      context.commit('SHOT_CHANGE', shotstate)
+    },
   },
   modules: {
   }
