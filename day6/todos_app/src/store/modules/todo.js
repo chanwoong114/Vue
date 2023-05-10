@@ -28,8 +28,11 @@ const todo =  {
   }),
   getters: {
     importTodo(state) {
-      return state.list.filter(todo => {
+      const todos= state.list.filter(todo => {
         return todo.isImportant
+      })
+      return todos.filter(todo => {
+        return !todo.isCompleted
       })
     },
     todayTodo(state) {
@@ -60,6 +63,23 @@ const todo =  {
         }
         return todo
       })
+    },
+    SELECT_COMPLETED(state, selectTodo) {
+      state.list = state.list.map(todo => {
+        if (todo === selectTodo) {
+          todo.isCompleted = !todo.isCompleted
+        }
+        return todo
+      })
+    },
+    UPDATE_TODO(state, selectTodo) {
+      state.list = state.list.map(todo => {
+        if (todo === selectTodo[0]) {
+          todo.content = selectTodo[1]
+          todo.dueDateTime = `${selectTodo[2].getFullYear()}-${selectTodo[2].getMonth()+1}-${selectTodo[2].getDate()}T00:00`
+        }
+        return todo
+      })
     }
   },
   actions: {
@@ -68,6 +88,12 @@ const todo =  {
     },
     selectImportant(context, todo) {
       context.commit('SELECT_IMPORTANT', todo)
+    },
+    selectCompleted(context, todo) {
+      context.commit('SELECT_COMPLETED', todo)
+    },
+    updateTodo(context, todo) {
+      context.commit('UPDATE_TODO', todo)
     }
   }
 }

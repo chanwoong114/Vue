@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container row mt-5" style="height: 800px;">
+  <div id="app" class="row my-3" style="height: 800px;">
     <SideBar class="col-3 border border-dark ms-2 rounded " />
     <div class="col-8 border border-dark ms-2 rounded">
       <router-view/>
