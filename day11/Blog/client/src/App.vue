@@ -1,0 +1,51 @@
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">게시물 목록</router-link> |
+      <router-link to="/create">게시물 작성</router-link> | 
+      <router-link v-if="isLogin" :to="{name: 'LoginView'}">Login | </router-link>
+      <router-link v-if="isLogin" :to="{name: 'SignupView'}">SignUp</router-link>
+      <span v-else @click="logout">로그아웃</span>
+      {{ isLogin }}
+    </nav>
+    <router-view/>
+  </div>
+</template>
+
+<script>
+  export default {
+    computed: {
+      isLogin() {
+        return this.$store.getters.isLogin
+      },
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch('logout')
+      }
+    }
+  }
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>

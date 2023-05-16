@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>팀 짜기</h1>
+    <p v-for="(team, index) in teams">{{ team }}</p>
+    <button @click="randomTeam">팀 짜기</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        names: ['김범규', '김태빈', '김현종', '박범진', '박서희',
+          '손임현', '송아람', '신대혁', '안종상', '양수원',
+          '오연주', '오정원', '윤예지', '이명인', '이은경',
+          '이지혁', '이찬웅', '장태원', '전종헌', '최우진', 
+          '홍주영', '황수아'],
+        teams: [],
+      },
+      methods: {
+        randomTeam() {
+          this.teams = []
+          this.names.sort(() => Math.random() - 0.5)
+          for (let i=0; i<11; i++) {
+            this.teams.push([this.names[i*2 + 0], this.names[i*2 + 1]])
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
